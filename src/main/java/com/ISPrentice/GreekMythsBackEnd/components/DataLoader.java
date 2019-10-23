@@ -10,7 +10,9 @@ import com.ISPrentice.GreekMythsBackEnd.repository.titans.TitanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -32,6 +34,7 @@ public class DataLoader implements ApplicationRunner {
     TitanRepository titanRepository;
 
     public DataLoader() {
+
     }
 
     public void run(ApplicationArguments args){
@@ -91,9 +94,9 @@ public class DataLoader implements ApplicationRunner {
 
 
 
-        jasonAndSirens.addHumans(jason);
+        jasonAndSirens.addHero(jason);
         jasonAndSirens.addMonster(siren);
-        jasonAndSirens.addHumans(medea);
+        jasonAndSirens.addMortal(medea);
 
         mythRepository.save(jasonAndSirens);
 

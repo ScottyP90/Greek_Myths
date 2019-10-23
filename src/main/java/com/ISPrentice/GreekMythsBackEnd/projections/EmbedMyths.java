@@ -1,9 +1,6 @@
 package com.ISPrentice.GreekMythsBackEnd.projections;
 
-import com.ISPrentice.GreekMythsBackEnd.Interface.IHumans;
-import com.ISPrentice.GreekMythsBackEnd.Interface.IImmortals;
-import com.ISPrentice.GreekMythsBackEnd.models.Monster;
-import com.ISPrentice.GreekMythsBackEnd.models.Myth;
+import com.ISPrentice.GreekMythsBackEnd.models.*;
 import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
@@ -14,7 +11,9 @@ public interface EmbedMyths {
     String getTitle();
     String getShortDescription();
     String getDescription();
-    List<IImmortals> getImmortals();
-    List<IHumans> getHumans();
+    List<God> getGods();
+    List<Titan> getTitans();
+    List<Hero> getHeroes();
+    List<Mortal> getMortal();
     List<Monster> getMonsters();
 }

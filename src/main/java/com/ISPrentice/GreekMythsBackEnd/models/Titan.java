@@ -1,15 +1,16 @@
 package com.ISPrentice.GreekMythsBackEnd.models;
 
-import com.ISPrentice.GreekMythsBackEnd.Interface.IImmortals;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "titans")
-public class Titan implements IImmortals {
+public class Titan implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +32,10 @@ public class Titan implements IImmortals {
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
-            joinColumns = {@JoinColumn(name = "immortal_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "titan_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "myth_id", nullable = false, updatable = false)}
     )
-    private ArrayList<Myth> myths;
+    private List<Myth> myths;
 
     public Titan(String titanName, String title, String shortDescription, String description) {
         this.titanName = titanName;
@@ -87,11 +88,11 @@ public class Titan implements IImmortals {
         this.description = description;
     }
 
-    public ArrayList<Myth> getMyths() {
+    public List<Myth> getMyths() {
         return myths;
     }
 
-    public void setMyths(ArrayList<Myth> myths) {
+    public void setMyths(List<Myth> myths) {
         this.myths = myths;
     }
 

@@ -1,15 +1,16 @@
 package com.ISPrentice.GreekMythsBackEnd.models;
 
-import com.ISPrentice.GreekMythsBackEnd.Interface.IHumans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "mortals")
-public class Mortal implements IHumans {
+public class Mortal implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +29,10 @@ public class Mortal implements IHumans {
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
-            joinColumns = {@JoinColumn(name = "human_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "mortal_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "myth_id", nullable = false, updatable = false)}
     )
-    private ArrayList<Myth> myths;
+    private List<Myth> myths;
 
     public Mortal(String mortalName, String shortDescription, String description) {
         this.mortalName = mortalName;
@@ -75,11 +76,11 @@ public class Mortal implements IHumans {
         this.description = description;
     }
 
-    public ArrayList<Myth> getMyths() {
+    public List<Myth> getMyths() {
         return myths;
     }
 
-    public void setMyths(ArrayList<Myth> myths) {
+    public void setMyths(List<Myth> myths) {
         this.myths = myths;
     }
 

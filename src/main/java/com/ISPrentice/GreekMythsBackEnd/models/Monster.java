@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "monsters")
-public class Monster {
+public class Monster implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +32,7 @@ public class Monster {
             joinColumns = {@JoinColumn(name = "monster_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "myth_id", nullable = false, updatable = false)}
     )
-    private ArrayList<Myth> myths;
+    private List<Myth> myths;
 
     public Monster(String monsterName, String shortDescription, String description) {
         this.monsterName = monsterName;
@@ -74,11 +76,11 @@ public class Monster {
         this.description = description;
     }
 
-    public ArrayList<Myth> getMyths() {
+    public List<Myth> getMyths() {
         return myths;
     }
 
-    public void setMyths(ArrayList<Myth> myths) {
+    public void setMyths(List<Myth> myths) {
         this.myths = myths;
     }
 
